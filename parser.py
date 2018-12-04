@@ -120,7 +120,7 @@ def clean_rsid(d, vals):
 
 # open file, parse, pass to json mapper
 def load_data(data_folder):
-    input_fn = os.path.join(data_folder,"denovo-db.non-ssc-samples.variants.v.1.6.1.tsv")
+    input_fn = os.path.join(data_folder,"denovo-db.non-ssc-samples.variants.tsv")
     open_file = open(input_fn)
     db_denovodb = csv.reader(open_file, delimiter="\t")
     index = next(db_denovodb)
