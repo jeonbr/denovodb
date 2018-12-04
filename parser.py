@@ -102,7 +102,7 @@ def _map_line_to_json(df):
 
 
 def clean_index(s):
-    return s.lower().replace("/", "_").replace("-", "_").replace("(", "_").replace(")", "").replace("#", "")
+    return s.replace("/", "_").replace("-", "_").replace("(", "_").replace(")", "").replace("#", "")
 
 
 def clean_data(d, vals):
