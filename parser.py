@@ -102,6 +102,7 @@ def _map_line_to_json(df):
     one_snp_json['denovodb']['exon_intron'] = str(one_snp_json['denovodb']['exon_intron'])    
     one_snp_json['denovodb']['polyphen_hdiv'] = str(one_snp_json['denovodb']['polyphen_hdiv'])  
     one_snp_json['denovodb']['polyphen_hvar'] = to_float(one_snp_json['denovodb']['polyphen_hvar'])  
+    one_snp_json['denovodb']['siftscore'] = to_float(one_snp_json['denovodb']['siftscore']) 
     return one_snp_json
 
 def to_float(f):
