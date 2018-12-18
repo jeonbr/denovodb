@@ -106,7 +106,7 @@ def _map_line_to_json(df):
 
 def to_float(f):
     if f:
-        retrun float(f)
+        return float(f)
     
 
 def clean_index(s):
