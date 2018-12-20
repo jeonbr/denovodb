@@ -61,57 +61,48 @@ def _map_line_to_json(df):
     one_snp_json = {
         "_id": HGVS,
         "denovodb": {
-            "chrom": chrom,
-            "pos" : position,
-            "ref": ref,
-            "alt": alt,
-            "sampleid": sampleid,
-            "studyname": studyname,
-            "pmid": pubmedid,
-            "numprobands": numprobands,
-            "numcontrols":  numcontrols,
-            "sequencetype":  sequencetype,
-            "primaryphenotype": primaryphenotype,
-            "validation": validation,
-            "variant": variant,
-            "rsid": rsid,
-            "dbsnpbuild": dbsnpbuild,
-            "ancestralallele": ancestralallele,
-            "1000genomecount":  kgenomecount,
-            "exacfreq":  exacfreq,
-            "espaafreq":   espaafreq,
-            "espeafreq":   espeafreq,
-            "transcript":  transcript,
-            "codingdnasize":  codingdnasize,
-            "gene":    gene,
-            "functionclass":  functionclass,
-            "cdnavariant": cdnavariant,
-            "proteinvariant":  proteinvariant,
-            "exon_intron":   exon_intron,
-            "polyphen_hdiv": polyphen_hdiv,
-            "polyphen_hvar": polyphen_hvar,
-            "siftscore":   siftscore,
-            "caddscore": caddscore,
-            "lofscore":  lofscore,
-            "lrtscore":  lrtscore,
+            "chrom": convert_or_none(chrom, str),
+            "pos" : convert_or_none(position, int),
+            "ref": convert_or_none(ref, str),
+            "alt": convert_or_none(alt, str),
+            "sampleid": convert_or_none(sampleid, str),
+            "studyname": convert_or_none(studyname, str),
+            "pmid": convert_or_none(pubmedid, int),
+            "numprobands": convert_or_none(numprobands, int),
+            "numcontrols":  convert_or_none(numcontrols, int),
+            "sequencetype":  convert_or_none(sequencetype,str),
+            "primaryphenotype": convert_or_none(primaryphenotype,str),
+            "validation": convert_or_none(validation, str),
+            "variant": convert_or_none(variant, str),
+            "rsid": convert_or_none(rsid, str),
+            "dbsnpbuild": convert_or_none(rsid, int),
+            "ancestralallele": convert_or_none(ancestralallele, str),
+            "1000genomecount":  convert_or_none(kgenomecount, int),
+            "exacfreq":  convert_or_none(exacfreq, float),
+            "espaafreq":   convert_or_none(espaafreq, float),
+            "espeafreq":   convert_or_none(espeafreq, float),
+            "transcript":  convert_or_none(transcript, str),
+            "codingdnasize":  convert_or_none(codingdnasize, int),
+            "gene":    convert_or_none(gene, str),
+            "functionclass":  convert_or_none(functionclass,str),
+            "cdnavariant": convert_or_none(cdnavariant,str),
+            "proteinvariant":  convert_or_none(proteinvariant,str),
+            "exon_intron":   convert_or_none(exon_intron,str),
+            "polyphen_hdiv": convert_or_none(polyphen_hdiv,float),
+            "polyphen_hvar": convert_or_none(polyphen_hvar,float),
+            "siftscore":   convert_or_none(siftscore,float),
+            "caddscore": convert_or_none(caddscore,float),
+            "lofscore":  convert_or_none(lofscore,float),
+            "lrtscore":  convert_or_none(lrtscore,float),
         }
     }
 
-    one_snp_json = value_convert_to_number(one_snp_json)
-    one_snp_json['denovodb']['chrom'] = str(one_snp_json['denovodb']['chrom'])
-    one_snp_json['denovodb']['sampleid'] = str(one_snp_json['denovodb']['sampleid'])
-    one_snp_json['denovodb']['exon_intron'] = str(one_snp_json['denovodb']['exon_intron'])    
-    one_snp_json['denovodb']['polyphen_hdiv'] = str(one_snp_json['denovodb']['polyphen_hdiv'])  
-    one_snp_json['denovodb']['polyphen_hvar'] = to_float(one_snp_json['denovodb']['polyphen_hvar'])  
-    one_snp_json['denovodb']['siftscore'] = to_float(one_snp_json['denovodb']['siftscore']) 
-    one_snp_json['denovodb']['lrtscore'] = to_float(one_snp_json['denovodb']['lrtscore']) 
-    one_snp_json['denovodb']['espaafreq'] = to_float(one_snp_json['denovodb']['espaafreq']) 
     return one_snp_json
 
-def to_float(f):
-    if f:
-        return float(f)
-    
+def convert_or_none(v, to_f, none_vals=[]):
+    if (not v) or (v in none_vals):
+        return None
+    return to_f(v)   
 
 def clean_index(s):
     return s.replace("/", "_").replace("-", "_").replace("(", "_").replace(")", "").replace("#", "")
