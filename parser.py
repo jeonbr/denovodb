@@ -75,7 +75,7 @@ def _map_line_to_json(df):
             "validation": convert_or_none(validation, str),
             "variant": convert_or_none(variant, str),
             "rsid": convert_or_none(rsid, str),
-            "dbsnpbuild": convert_or_none(rsid, int),
+            "dbsnpbuild": convert_or_none(dbsnpbuild, int),
             "ancestralallele": convert_or_none(ancestralallele, str),
             "1000genomecount":  convert_or_none(kgenomecount, int),
             "exacfreq":  convert_or_none(exacfreq, float),
