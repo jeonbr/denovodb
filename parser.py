@@ -99,6 +99,7 @@ def _map_line_to_json(df):
 
     one_snp_json = value_convert_to_number(one_snp_json)
     one_snp_json['denovodb']['chrom'] = str(one_snp_json['denovodb']['chrom'])
+    one_snp_json['denovodb']['sampleid'] = str(one_snp_json['denovodb']['sampleid'])
     one_snp_json['denovodb']['exon_intron'] = str(one_snp_json['denovodb']['exon_intron'])    
     one_snp_json['denovodb']['polyphen_hdiv'] = str(one_snp_json['denovodb']['polyphen_hdiv'])  
     one_snp_json['denovodb']['polyphen_hvar'] = to_float(one_snp_json['denovodb']['polyphen_hvar'])  
